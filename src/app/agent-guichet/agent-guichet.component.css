@@ -1,0 +1,33 @@
+/* Set the initial width of the calendar container */
+#calendar-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Media query for smaller screens */
+  @media only screen and (max-width: 767px) {
+    #calendar-container {
+      width: 90%;
+    }
+  }
+  
+  /* Media query for even smaller screens */
+  @media only screen and (max-width: 479px) {
+    #calendar-container {
+      width: 100%;
+    }
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  app-sidebar {
+    flex: 0.5;
+    margin-right: 20px;
+  }
+  
+  full-calendar {
+    flex: 6;
+  }
+    

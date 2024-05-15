@@ -1,0 +1,78 @@
+<head><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="fa59f46b89
+  "  referrerpolicy="no-referrer" />
+</head>
+<app-navbar-logged></app-navbar-logged>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <app-sidebar [role]="role"></app-sidebar>
+        </div>
+        <div class="container-form">
+          <div class="col-lg-10">
+            <div *ngIf="showSubmitMessage" class="alert alert-success" role="alert">
+              Votre rendez-vous a bien été enregistré.
+            </div>
+            
+            <div *ngIf="showCancelMessage" class="alert alert-danger" role="alert">
+              Votre rendez-vous a été annulé.
+            </div>
+            <div class="image-container">
+              <img src="../assets/agil.jpg" alt="Image"/>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100%;">
+              <form [formGroup]="myForm" (ngSubmit)="submitForm(myForm)" >
+                <div class="mb-3">
+                  <label for="appointment-date" class="form-label">Date</label>
+                  <input formControlName="date" type="date" class="form-control" id="appointment-date" [min]="getMinDate()" (change)="getAppointmentDate()" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="location" class="form-label">Lieu</label>
+                    <select formControlName="location" class="form-select" id="location" required (change)="getAppointmentLocation()">
+                      <option value="" disabled selected>Saisir lieu</option>
+                      <option value="tunis">Tunis</option>
+                      <option value="sousse">Sousse</option>
+                      <option value="gabes">Gabes</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="product" class="form-label">Produit</label>
+                  <select formControlName="product" class="form-select" id="product" required (change)="getProductId()">
+                    <option value="" disabled selected>Selectionner un produit</option> 
+                    <option value="carteAgilis">Carte Agilis</option>
+                    <option value="carteBon">Carte Bon</option>
+                    <option value="bonValeur">Bon Valeur</option>
+                  </select>
+                </div>
+
+                <div class="mb-3" *ngIf="isDropDownSelected()">
+                    <label for="appointment-time" class="form-label" *ngIf="isDropDownSelected()"   >Horaire</label>
+                    <div class="d-flex">
+                        <select formControlName="hour" class="form-select me-2" aria-label="Heure" (change)="getHeure()" >
+                          <option value="">-- Heure --</option>
+                          <option *ngFor="let h of hours" [value]="h">{{ h }}</option>
+                        </select> 
+                      <select formControlName="minute" class="form-select" aria-label="Minute">
+                        <option value="">-- Minute --</option>
+                        <option *ngFor="let m of minutes" [value]="m" [disabled]="isMinuteDisabled(m)">{{ m }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group text-center" >
+                  <button type="submit" class="btn btn-primary">Confirmer</button>
+                  <button type="button" class="btn btn-secondary" (click)="onCancel()">Annuler</button>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+    </div>
+    
+</div>
+ 
+        </div>
+        

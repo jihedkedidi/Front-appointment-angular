@@ -1,0 +1,77 @@
+<div *ngIf="showSubmitMessage" class="alert alert-success" role="alert">
+    Votre rendez-vous a bien été enregistré.
+  </div>
+  
+  <div *ngIf="showCancelMessage" class="alert alert-danger" role="alert">
+    Votre rendez-vous a été annulé.
+  </div>
+  <div class="image-container">
+    <img src="../assets/agil.jpg" alt="Image"/>
+  </div>
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100%;">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm(myForm)" >
+      <div class="mb-3">
+        <label for="appointment-date" class="form-label">Date</label>
+        <input formControlName="date" type="date" class="form-control" id="appointment-date" required>
+      </div>
+      <div class="mb-3">
+        <!--<label for="appointment-time" class="form-label">Time</label>
+        <input formControlName="time" type="time" class="form-control"  id="appointment-time"  required> -->
+          <label for="appointment-time" class="form-label">Temps</label>
+          <div class="d-flex">
+              <select formControlName="hour" class="form-select me-2" aria-label="Heure">
+                <option value="">-- Heure --</option>
+                <option *ngFor="let h of hours" [value]="h">{{ h }}</option>
+              </select> 
+             <select formControlName="minute" class="form-select" aria-label="Minute">
+              <option value="">-- Minute --</option>
+              <option *ngFor="let m of minutes" [value]="m">{{ m }}</option>
+              </select>
+          </div>
+  
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <select formControlName="location" class="form-select" id="location" required>
+          <option value="" disabled selected>Saisir location</option>
+          <option value="tunis">Tunis</option>
+          <option value="sousse">Sousse</option>
+          <option value="gabes">Gabes</option>
+        </select>
+      </div>
+    <!--  <div class="mb-3">
+        <label for="product" class="form-label">Product</label>
+        <select formControlName="product" class="form-select" id="product" required>
+          <option value="" disabled selected>Select a product</option>
+          <option value="agilis-card">Carte Agilis</option>
+          <option value="ticket-1">Ticket 1</option>
+          <option value="ticket-2">Ticket 2</option>
+        </select>
+      </div> -->
+  
+      <div class="mb-3">
+        <p>Choisissez les produits :</p>
+        <div>
+          <input type="checkbox" id="agilis-card" name="agilis-card">
+          <label for="agilis-card">Carte Agilis</label>
+          <input type="number" id="qte-agilis-card" name="qte-agilis-card" value="0" min="0">
+        </div>
+        <div>
+          <input type="checkbox" id="ticket-1" name="ticket-1">
+          <label for="ticket-1">Ticket 1</label>
+          <input type="number" id="qte-ticket-1" name="qte-ticket-1" value="0" min="0">
+        </div>
+        <div>
+          <input type="checkbox" id="ticket-2" name="ticket-2">
+          <label for="ticket-2">Ticket 2</label>
+          <input type="number" id="qte-ticket-2" name="qte-ticket-2" value="0" min="0">
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">Confirmer</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Annuler</button>
+      </div>
+    </form>
+    
+  </div>
+  

@@ -1,0 +1,81 @@
+<app-navbar-logged></app-navbar-logged>
+
+
+
+<div class="container">
+  <div class="container-sidebar">
+    <app-sidebar [role]="role"></app-sidebar>
+  </div>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Vos Rendez-Vous: </h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Heure/Minutes</th>
+                    <th>Lieu</th>
+                    <th>Produit</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <tr *ngFor="let appointment of appointments">
+                      <td>{{ appointment.date }}</td>
+                      <td>{{ appointment.heure }}:{{ appointment.minutes }}</td>
+                      <td>{{appointment.location}}</td>
+                      <td>{{appointment.product.name}}</td>
+                      <td  class="status"  [style.background]="getBackground(appointment.status)">{{ getAppointmentStatus(appointment) }}</td>
+                      <td>
+                          <button type="button" class="btn btn-sm btn-primary"  (click)="editRow(editAppointmentModal,appointment)" [hidden]="disbleButton(appointment.status)" >Modifier</button>
+                          <button type="button" class="btn btn-sm btn-danger" (click)="deleteAppointment(appointment.id)"  [hidden]="disbleButton(appointment.status)">Supprimer</button>
+                        </td> 
+                    </tr> 
+                </tbody>
+              </table>  
+            </div>
+          </div>
+        </div>
+        <ng-template #editAppointmentModal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">Modifier Rendez-Vous</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="location">Lieux</label>
+              <select  class="form-select" id="location" required  [(ngModel)]="currentAppointment.location">
+                <option value="" disabled selected>Saisir lieu</option>
+                <option value="tunis">Tunis</option>
+                <option value="sousse">Sousse</option>
+                <option value="gabes">Gabes</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="product" class="form-label">Produit</label>
+              <select class="form-select" id="product" required [(ngModel)]="currentAppointment.product.id" >
+                <option value="" disabled selected>Selectionner un produit</option> 
+                <option value="1">Carte Agilis</option>
+                <option value="2">Carte Bon</option>
+                <option value="3">Bon Valeur</option>
+              </select>
+            </div>
+           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Annuler</button>
+            <button type="button" class="btn btn-primary" (click)="saveChanges()" >Enregistrer les modifications</button>
+          </div>
+        </ng-template>
+      </div>
+  
+</div>
+

@@ -1,0 +1,49 @@
+<app-navbar-logged ></app-navbar-logged>
+<div class="container">
+  <div class="sidebar">
+    <app-sidebar [role]="role"></app-sidebar>
+  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Rendez-Vous</h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+                    <th>Date</th>
+                    <th>Heure/Minutes</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <tr *ngFor="let appointment of appointments">
+                      <td>{{ appointment.user.lastName }}</td>
+                      <td>{{ appointment.user.firstName }}</td>
+                      <td>{{ appointment.user.phone }}</td>
+                      <td>{{ appointment.date }}</td>
+                      <td>{{ appointment.heure }}:{{ appointment.minutes }}</td>
+                      <td class="status" [style.background-color]="getBackground(appointment.status)">{{ getAppointmentStatus(appointment)}}</td>
+                      <td>
+                          <button type="button" class="btn btn-sm btn-primary" (click)="updateAppointmentStatus(appointment,'CONFIRMED')" >Confirmer</button>
+                          <button type="button" class="btn btn-sm btn-danger" (click)="updateAppointmentStatus(appointment,'CANCELED')">Annuler</button>
+                        </td> 
+                        <br>
+                    </tr> 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+

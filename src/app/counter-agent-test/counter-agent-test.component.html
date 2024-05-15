@@ -1,0 +1,15 @@
+<head><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="fa59f46b89
+  " crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<app-navbar-logged></app-navbar-logged>
+<div class="container">
+  <div class="sidebar">
+    <app-sidebar [role]="role"></app-sidebar>
+  </div>
+  <div class="calendar">
+  
+    <full-calendar #calendar [options]="calendarOptions" ></full-calendar>
+
+  </div>
+</div>

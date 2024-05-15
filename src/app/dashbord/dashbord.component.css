@@ -1,0 +1,18 @@
+*{
+  margin: 0;
+}
+.container {
+  display: flex;
+ 
+}
+
+.sidebar {
+  flex:5;
+  margin-top: 140px;
+}
+
+.charts {
+    flex: 1;
+    margin-top: 40px;
+   
+}

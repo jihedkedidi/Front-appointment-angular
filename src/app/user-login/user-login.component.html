@@ -1,0 +1,87 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Profile</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isUser || isAdmin">
+          <a class="nav-link" routerLink="user">User Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="isModerator || isAdmin">
+          <a class="nav-link" href="#">Moderator Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" href="#">Admin Dashboard</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" >{{firstName}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  (click)="logout()">Deconnecter</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+
+<main class="container-fluid">
+  <div class="row">
+
+   <app-sidebar></app-sidebar>
+
+    <!-- Main content -->
+   <!--
+    <div class="col-lg-10 main-content">
+      <h1>{{ user.firstName }}</h1>
+      
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>Users</h4>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Roles</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of users">
+                      <td>{{ user.firstName }}</td>
+                      <td>{{ user.lastName }}</td>
+                      <td>{{ user.phone }}</td>
+                      <td>{{ user.email }}</td>
+                      <td> 
+                          <li >{{ user.roles[0].name }}</li>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   --> 
+   <!-- <app-view-users *ngIf="user2$ | async;let user" [user]="user" ></app-view-users> -->
+  </div>
+</main>
+
+<router-outlet></router-outlet>
+

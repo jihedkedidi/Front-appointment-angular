@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .piechart, .curvechart {
+    margin: 0 10px; /* Ajoute une marge entre les graphiques */
+   
+  }
+  

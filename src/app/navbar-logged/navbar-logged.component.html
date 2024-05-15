@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" *ngIf="isAdmin">Admin:</a>
+      <a class="navbar-brand" *ngIf="isUser"></a>
+      <a class="navbar-brand" *ngIf="isCounterAgent">Agent Guichet:</a>
+      <a class="navbar-brand"  >{{firstName}}</a>
+      <div class="collapse navbar-collapse" id="navbarNav">   
+        <ul class="navbar-nav ms-auto">  
+          <li class="nav-item">
+            <a class="nav-link"  (click)="logout()">Deconnecter</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
